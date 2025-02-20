@@ -5,14 +5,14 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build('isgood')
+                    sh 'docker build -t isgood .'
                 }
             }
         }
         stage('Run') {
             steps {
                 script {
-                    docker.image('isgood').run('-p 3000:3000')
+                    sh 'docker run -d -p 3000:3000 --name isgood_container isgood'
                 }
             }
         }
